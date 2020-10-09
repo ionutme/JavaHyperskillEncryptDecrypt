@@ -6,12 +6,12 @@ import java.nio.file.Paths;
 
 public class DataReader {
 
-    public static char[] getData(Input input) {
-        if (input.data == null) {
-            return getDataFromFile(input.in);
+    public static char[] getData(String inputData, String filename) {
+        if (inputData == null) {
+            return getDataFromFile(filename);
         }
 
-        return input.data.toCharArray();
+        return inputData.toCharArray();
     }
 
     private static char[] getDataFromFile(String filename) {

@@ -9,9 +9,7 @@ public class CrypticMessage {
         this.key = key;
     }
 
-    public static CrypticMessage create(InOutController inout) {
-        var inputData = inout.read();
-
-        return new CrypticMessage(inputData, inout.input.key);
+    public static CrypticMessage create(char[] inputData, int key) {
+        return new CrypticMessage(inputData, key);
     }
 }

@@ -2,11 +2,13 @@ package encryptdecrypt;
 
 public class Main {
     public static void main(String[] args) {
-        InOutController inout = new InOutController(args);
+        var input = new Input(args);
+        char[] inputData = InOutController.read(input.data, input.in);
+        var crypticMessage = CrypticMessage.create(inputData, input.key);
 
-        CipherProcessor processor = new CipherProcessor(inout.input.mode, inout.input.algorithm);
-        String cyphertext = processor.process(CrypticMessage.create(inout));
+        var processor = new CipherProcessor(input.mode, input.algorithm);
+        String cyphertext = processor.process(crypticMessage);
 
-        inout.write(cyphertext);
+        InOutController.write(cyphertext, input.out);
     }
 }

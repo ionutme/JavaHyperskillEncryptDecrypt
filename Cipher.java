@@ -6,18 +6,12 @@ interface CipherFunc {
 }
 
 public abstract class Cipher {
-    private final int key;
-
-    Cipher(int key) {
-        this.key = key;
+    public String encode(char[] letters, int key) {
+        return cypher(letters, key, this::encode);
     }
 
-    public String encode(char[] letters) {
-        return cypher(letters, this.key, this::encode);
-    }
-
-    public String decode(char[] letters) {
-        return cypher(letters, this.key, this::decode);
+    public String decode(char[] letters, int key) {
+        return cypher(letters, key, this::decode);
     }
 
     protected abstract char encode(char letter, int shiftedPos);

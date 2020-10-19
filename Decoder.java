@@ -2,6 +2,10 @@ package encryptdecrypt;
 
 public abstract class Decoder extends AbstractEncoderDecoder {
 
+    Decoder(Cipher cipher) {
+        super(cipher);
+    }
+
     @Override
     public String cypher(CrypticMessage message) {
         return decode(message);
@@ -12,20 +16,24 @@ public abstract class Decoder extends AbstractEncoderDecoder {
 
 class ShiftDecoder extends Decoder {
 
+    ShiftDecoder() {
+        super(new ShiftCipher());
+    }
+
     @Override
     protected String decode(CrypticMessage message) {
-        Cipher cipher = new ShiftCipher(message.key);// TODO push up Cipher construction
-
-        return cipher.decode(message.inputData);
+        return cipher.decode(message.inputData, message.key);
     }
 }
 
 class UnicodeDecoder extends Decoder {
 
+    UnicodeDecoder() {
+        super(new UnicodeCipher());
+    }
+
     @Override
     protected String decode(CrypticMessage message) {
-        Cipher cipher = new UnicodeCipher(message.key);// TODO push up Cipher construction
-
-        return cipher.decode(message.inputData);
+        return cipher.decode(message.inputData, message.key);
     }
 }

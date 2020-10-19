@@ -1,10 +1,12 @@
 package encryptdecrypt;
 
-public abstract class CipherFactory {
+public abstract class EncoderDecoderFactory {
+
     abstract AbstractEncoderDecoder create(String type);
 }
 
-class EncoderFactory extends CipherFactory {
+class EncoderFactory extends EncoderDecoderFactory {
+
     @Override
     AbstractEncoderDecoder create(String type) {
         Encoder encoder;
@@ -24,7 +26,8 @@ class EncoderFactory extends CipherFactory {
     }
 }
 
-class DecoderFactory extends CipherFactory {
+class DecoderFactory extends EncoderDecoderFactory {
+
     @Override
     AbstractEncoderDecoder create(String type) {
         Decoder decoder;

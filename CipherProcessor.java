@@ -13,14 +13,14 @@ public class CipherProcessor {
     }
 
     private AbstractEncoderDecoder getCipher(String mode, String type) {
-        CipherFactory factory = getCipherFactory(mode);
+        EncoderDecoderFactory factory = getCipherFactory(mode);
 
         return factory.create(type);
     }
 
-    private CipherFactory getCipherFactory(String type) {
+    private EncoderDecoderFactory getCipherFactory(String type) {
 
-        CipherFactory factory;
+        EncoderDecoderFactory factory;
         switch (type.toUpperCase()) {
             case "ENC":
                 factory = new EncoderFactory();
